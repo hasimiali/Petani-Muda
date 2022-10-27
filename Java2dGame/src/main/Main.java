@@ -9,7 +9,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		JFrame window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(false);
+		window.setResizable(true);
 		window.setTitle("Petani Muda");
 				
 		GamePanel gamePanel = new GamePanel();

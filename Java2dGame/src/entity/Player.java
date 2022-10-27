@@ -10,13 +10,14 @@ import main.GamePanel;
 import main.KeyHandler;
 
 public class Player extends Entity {
-	private int x,y;
+	public int worldX, worldY;
 	private int speed;
 	private BufferedImage up1, up2, up3, down1, down2, down3, right1, right2, right3, left1, left2, left3;
 	private String direction;
 	private int spriteCounter = 0;
 	private int spriteNum = 1;
 	
+	public final int screenX, screenY;
 	
 	GamePanel gp;
 	KeyHandler keyH;
@@ -25,16 +26,19 @@ public class Player extends Entity {
 		this.gp = gp;
 		this.keyH = keyH;
 		
+		screenX  = gp.SCREENWIDTH/2 - (gp.TILESIZE/2);
+		screenY = gp.SCREENHEIGHT/2 - (gp.TILESIZE/2);
+		
 		setDefaultValues();
 		getPlayerImage();
 	}
 	
-	//posisi awal karakter
+	//set player position
 	public void setDefaultValues() {
-		x = 350;
-		y = 250;
-		speed = 3;
 		
+		worldX = gp.TILESIZE * 15;
+		worldY = gp.TILESIZE * 21;
+		speed = 4;
 		direction = "down";
 	}
 	
@@ -71,19 +75,19 @@ public class Player extends Entity {
 		//merubah posisi karakter sesuai arrow
 		if(keyH.upPressed == true) {
 			direction = "up";
-			y -= speed;
+			worldY -= speed;
 			spriteCounter++;
 		}else if(keyH.downPressed == true) {
 			direction = "down";
-			y += speed;
+			worldY += speed;
 			spriteCounter++;
 		}else if(keyH.rightPressed == true) {
 			direction = "right";
-			x += speed;
+			worldX += speed;
 			spriteCounter++;
 		}else if(keyH.leftPressed == true) {
 			direction = "left";
-			x -= speed;
+			worldX -= speed;
 			spriteCounter++;
 		}else {
 			//kondisi karakter berhenti (melepas arrow)
@@ -159,6 +163,6 @@ public class Player extends Entity {
 			break;
 		}
 		
-		g2.drawImage(image, x, y, gp.TILESIZE, gp.TILESIZE, null);
+		g2.drawImage(image, screenX, screenY, gp.TILESIZE, gp.TILESIZE, null);
 	}
 }
