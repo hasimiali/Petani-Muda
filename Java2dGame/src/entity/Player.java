@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -10,12 +11,6 @@ import main.GamePanel;
 import main.KeyHandler;
 
 public class Player extends Entity {
-	public int worldX, worldY;
-	private int speed;
-	private BufferedImage up1, up2, up3, down1, down2, down3, right1, right2, right3, left1, left2, left3;
-	private String direction;
-	private int spriteCounter = 0;
-	private int spriteNum = 1;
 	
 	public final int screenX, screenY;
 	
@@ -29,6 +24,12 @@ public class Player extends Entity {
 		screenX  = gp.SCREENWIDTH/2 - (gp.TILESIZE/2);
 		screenY = gp.SCREENHEIGHT/2 - (gp.TILESIZE/2);
 		
+		solidArea = new Rectangle();
+		solidArea.x = 8;
+		solidArea.y = 16;
+		solidArea.width = 32;
+		solidArea.height = 32;
+		
 		setDefaultValues();
 		getPlayerImage();
 	}
@@ -36,7 +37,7 @@ public class Player extends Entity {
 	//set player position
 	public void setDefaultValues() {
 		
-		worldX = gp.TILESIZE * 15;
+		worldX = gp.TILESIZE * 23;
 		worldY = gp.TILESIZE * 21;
 		speed = 4;
 		direction = "down";
@@ -72,27 +73,53 @@ public class Player extends Entity {
 	
 	public void update() {
 		
-		//merubah posisi karakter sesuai arrow
+		//merubah posisi karakter sesuai arrow + cek collision
+		
+		collisionOn = false;
 		if(keyH.upPressed == true) {
+			gp.cChecker.checkTile(this);
 			direction = "up";
-			worldY -= speed;
-			spriteCounter++;
+			if(collisionOn == false) {
+				worldY -= speed;
+				spriteCounter++;
+			}else{
+				spriteNum = 0;
+			}
 		}else if(keyH.downPressed == true) {
+			gp.cChecker.checkTile(this);
 			direction = "down";
-			worldY += speed;
-			spriteCounter++;
+			if(collisionOn == false) {
+				worldY += speed;
+				spriteCounter++;
+			}else{
+				spriteNum = 0;
+			}
+			
 		}else if(keyH.rightPressed == true) {
+			gp.cChecker.checkTile(this);
 			direction = "right";
-			worldX += speed;
-			spriteCounter++;
+			if(collisionOn == false) {
+				worldX += speed;
+				spriteCounter++;				
+			}else{
+				spriteNum = 0;
+			}
+			
 		}else if(keyH.leftPressed == true) {
+			gp.cChecker.checkTile(this);
 			direction = "left";
-			worldX -= speed;
-			spriteCounter++;
+			if(collisionOn == false) {
+				worldX -= speed;
+				spriteCounter++;
+			}else{
+				spriteNum = 0;
+			}
 		}else {
-			//kondisi karakter berhenti (melepas arrow)
+			collisionOn = false;
 			spriteNum = 0;
 		}
+		
+		
 		
 		//merubah gerakan karakter perframe (ex : kaki kanan - kaki kiri)
 		

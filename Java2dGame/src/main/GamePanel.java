@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Window;
 
 import javax.swing.JPanel;
 
@@ -16,8 +17,8 @@ public class GamePanel extends JPanel implements Runnable{
 	final int SCALE = 3;
 	
 	public final int TILESIZE = ORIGINALTILESIZE * SCALE;
-	public final int MAXSCREENCOL = 40;
-	public final int MAXSCREENROW = 22;
+	public final int MAXSCREENCOL = 16;
+	public final int MAXSCREENROW = 12;
 	public final int SCREENWIDTH = TILESIZE * MAXSCREENCOL;
 	public final int SCREENHEIGHT = TILESIZE * MAXSCREENROW;
 	
@@ -33,6 +34,8 @@ public class GamePanel extends JPanel implements Runnable{
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
+	
+	public CollisionChecker cChecker = new CollisionChecker(this);
 	
 	public Player player = new Player(this,keyH);
 	
