@@ -1,14 +1,19 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Window;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
+import javax.swing.Box;
 import javax.swing.JPanel;
 
 import entity.Player;
+import objects.SuperObject;
 import tiles.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -17,14 +22,14 @@ public class GamePanel extends JPanel implements Runnable{
 	final int SCALE = 3;
 	
 	public final int TILESIZE = ORIGINALTILESIZE * SCALE;
-	public final int MAXSCREENCOL = 16;
-	public final int MAXSCREENROW = 12;
+	public final int MAXSCREENCOL = 24;
+	public final int MAXSCREENROW = 18;
 	public final int SCREENWIDTH = TILESIZE * MAXSCREENCOL;
 	public final int SCREENHEIGHT = TILESIZE * MAXSCREENROW;
 	
 	//WORLD SETTING
 	public final int maxWorldCol = 50;
-	public final int maxWorldRow = 50;
+	public final int maxWorldRow = 49;
 	public final int worldWidth = TILESIZE * maxWorldCol;
 	public final int worldHeight = TILESIZE * maxWorldRow;
 	
@@ -35,9 +40,15 @@ public class GamePanel extends JPanel implements Runnable{
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
 	
+	//COLLISION
 	public CollisionChecker cChecker = new CollisionChecker(this);
-	
+	//ASSET SETTER
+	public AssetSetter aSetter = new AssetSetter(this);
+	//PLAYER
 	public Player player = new Player(this,keyH);
+	//OBJECT
+	public SuperObject[] objects = new SuperObject[50];
+	
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
@@ -47,6 +58,12 @@ public class GamePanel extends JPanel implements Runnable{
 		//handler key
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
+		
+	}
+	
+	public void setupGame() {
+		
+		aSetter.setObject();
 	}
 	
 	public void startGameThread() {
@@ -90,10 +107,17 @@ public class GamePanel extends JPanel implements Runnable{
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
-		
+		//tile
 		tileM.draw(g2);
-		
+		//object
+		for(int i=0; i<objects.length; i++) {
+			if(objects[i] != null) {
+				objects[i].draw(this, g2);
+			}
+		}
+		//player
 		player.draw(g2);
+		
 		
 		g2.dispose();
 	}

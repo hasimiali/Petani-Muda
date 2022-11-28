@@ -21,12 +21,15 @@ public class Player extends Entity {
 		this.gp = gp;
 		this.keyH = keyH;
 		
+		//menempatkan posisi player ke tengah screen/panel
 		screenX  = gp.SCREENWIDTH/2 - (gp.TILESIZE/2);
 		screenY = gp.SCREENHEIGHT/2 - (gp.TILESIZE/2);
 		
 		solidArea = new Rectangle();
 		solidArea.x = 8;
 		solidArea.y = 16;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 32;
 		solidArea.height = 32;
 		
@@ -34,12 +37,12 @@ public class Player extends Entity {
 		getPlayerImage();
 	}
 	
-	//set player position
+	//set player position di bagian map
 	public void setDefaultValues() {
 		
 		worldX = gp.TILESIZE * 23;
 		worldY = gp.TILESIZE * 21;
-		speed = 4;
+		speed = 7;
 		direction = "down";
 	}
 	
