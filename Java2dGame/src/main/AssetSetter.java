@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Graphics2D;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.jar.Attributes.Name;
 
 import objects.Chest;
 import objects.EntranceHouse;
@@ -46,10 +47,29 @@ public class AssetSetter {
 	}
 	
 	public void draw(SuperObject object, int tileX, int tileY) {
-		System.out.println(object.name+"tileX = "+ tileX + " tileY = " + tileY);
-		gp.objects.add(object);
-		gp.objects.get(gp.objects.size()-1).worldX = tileX * gp.TILESIZE;
-		gp.objects.get(gp.objects.size()-1).worldY = tileY * gp.TILESIZE;
+		int counter = 0;
+		String Name = new String();
+		for(SuperObject i : gp.objects) {
+			System.out.println("posisi : "+i.name + "x = "+ i.worldY/48 + " y = " + i.worldY/48);
+			if(i.worldX/48 == tileX && i.worldY/48 == tileY) {
+				Name = i.name; 
+				System.out.println("ada object di tile itu");
+
+				counter++;
+				break;
+			}
+		}
+		if(counter==0&&object.name=="Hoeed_soil") {
+			gp.objects.add(object);
+			gp.objects.get(gp.objects.size()-1).worldX = tileX * gp.TILESIZE;
+			gp.objects.get(gp.objects.size()-1).worldY = tileY * gp.TILESIZE;
+		}
+		else if(counter==1&&Name=="Hoeed_soil"&&object.name=="Wet_Hoeed_soil") {
+			System.out.println("ada 1 object");
+			gp.objects.add(object);
+			gp.objects.get(gp.objects.size()-1).worldX = tileX * gp.TILESIZE;
+			gp.objects.get(gp.objects.size()-1).worldY = tileY * gp.TILESIZE;
+		}
 	}
 	
 //	public void update(Graphics2D g2) {

@@ -18,6 +18,7 @@ import objects.SuperObject;
 import subWindows.ToolBar;
 import tiles.TileManager;
 import tools.Hoe;
+import tools.WateringCan;
 
 public class GamePanel extends JPanel implements Runnable{
 	//SCREEN SETTING
@@ -55,8 +56,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public UI ui = new UI(this);
 	//ToolBar
 	public ToolBar toolBar = new ToolBar(this, keyH);
-	//test hoe
+	//Tools
 	public Hoe hoe = new Hoe(this, keyH, player, aSetter);
+	public WateringCan wateringCan = new WateringCan(this, keyH, player, aSetter);
 	
 	//GAME STATE
 	public int gameState;
@@ -118,7 +120,7 @@ public class GamePanel extends JPanel implements Runnable{
 		if(gameState == playState) {
 			player.update();
 			toolBar.update();
-			hoe.update();
+			
 		}
 		if(gameState == pauseState) {
 			//NOTHING

@@ -40,7 +40,7 @@ public class Player extends Entity {
 	//set player position di bagian map
 	public void setDefaultValues() {
 		
-		worldX = gp.TILESIZE * 23;
+		worldX = gp.TILESIZE * 12;
 		worldY = gp.TILESIZE * 21;
 		speed = 7;
 		direction = "down";

@@ -79,10 +79,12 @@ public void draw(Graphics2D g2) {
 		case 1:
 			currentItemX=(gp.TILESIZE*5)+4;
 			currentItemY=(gp.TILESIZE*12)+4;
+			gp.hoe.update();
 			break;
 		case 2:
 			currentItemX=(gp.TILESIZE*5)+(16*4)+4*2;
 			currentItemY=(gp.TILESIZE*12)+4;
+			gp.wateringCan.update();
 			break;
 		case 3:
 			currentItemX=(gp.TILESIZE*5)+2*(16*4)+4*3;
