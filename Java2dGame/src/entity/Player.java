@@ -68,6 +68,7 @@ public class Player extends Entity {
 			left2 = ImageIO.read(getClass().getResourceAsStream("/player/guyleft3.png"));
 			left3 = ImageIO.read(getClass().getResourceAsStream("/player/guyleft2.png"));
 
+			toolBar = ImageIO.read(getClass().getResourceAsStream("/windows/toolbar.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -194,5 +195,6 @@ public class Player extends Entity {
 		}
 		
 		g2.drawImage(image, screenX, screenY, gp.TILESIZE, gp.TILESIZE, null);
+//		g2.drawImage(toolBar, gp.TILESIZE*5, gp.TILESIZE*12, 171*4, 18*4, null);
 	}
 }

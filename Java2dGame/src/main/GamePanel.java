@@ -8,18 +8,21 @@ import java.awt.Graphics2D;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
 
 import entity.Player;
 import objects.SuperObject;
+import subWindows.ToolBar;
 import tiles.TileManager;
+import tools.Hoe;
 
 public class GamePanel extends JPanel implements Runnable{
 	//SCREEN SETTING
 	final int ORIGINALTILESIZE = 16;
-	final int SCALE = 3;
+	public final int SCALE = 3;
 	
 	public final int TILESIZE = ORIGINALTILESIZE * SCALE;
 	public final int MAXSCREENCOL = 24;
@@ -37,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 	int FPS = 60;
 	
 	TileManager tileM = new TileManager(this);
-	KeyHandler keyH = new KeyHandler();
+	KeyHandler keyH = new KeyHandler(this);
 	Thread gameThread;
 	
 	//COLLISION
@@ -47,7 +50,19 @@ public class GamePanel extends JPanel implements Runnable{
 	//PLAYER
 	public Player player = new Player(this,keyH);
 	//OBJECT
-	public SuperObject[] objects = new SuperObject[50];
+	public ArrayList<SuperObject> objects = new ArrayList<SuperObject>();
+	//UI
+	public UI ui = new UI(this);
+	//ToolBar
+	public ToolBar toolBar = new ToolBar(this, keyH);
+	//test hoe
+	public Hoe hoe = new Hoe(this, keyH, player, aSetter);
+	
+	//GAME STATE
+	public int gameState;
+	public final int playState = 1;
+	public final int pauseState = 2;
+	public final int characterState = 3;
 	
 	
 	public GamePanel() {
@@ -64,6 +79,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public void setupGame() {
 		
 		aSetter.setObject();
+		
+		gameState = playState;
 	}
 	
 	public void startGameThread() {
@@ -98,26 +115,39 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//menggerakkan karakter
 	public void update() {
-		player.update();
+		if(gameState == playState) {
+			player.update();
+			toolBar.update();
+			hoe.update();
+		}
+		if(gameState == pauseState) {
+			//NOTHING
+		}
+		if(gameState == characterState) {
+			//NOTHING
+		}
+				
 	}
 	
 	//status karakter di display
 	public void paintComponent(Graphics g) {
-		
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
 		//tile
 		tileM.draw(g2);
 		//object
-		for(int i=0; i<objects.length; i++) {
-			if(objects[i] != null) {
-				objects[i].draw(this, g2);
+		for(SuperObject i : objects) {
+			if(i!= null) {
+				i.draw(this, g2);
 			}
 		}
+		
+		
 		//player
 		player.draw(g2);
-		
+		toolBar.draw(g2);
+		ui.draw(g2);
 		
 		g2.dispose();
 	}

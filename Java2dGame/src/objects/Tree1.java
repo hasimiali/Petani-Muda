@@ -33,6 +33,7 @@ public class Tree1 extends SuperObject{
 				worldY - gp.TILESIZE < gp.player.worldY + gp.player.screenY + (TILETREE1 * gp.TILESIZE)) {
 			
 			g2.drawImage(image, screenX, screenY, gp.TILESIZE * TILETREE1, gp.TILESIZE * TILETREE1, null);
+			System.out.println("lagi ngedraw tree");
 		}
 	}
 	
