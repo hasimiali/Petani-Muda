@@ -147,7 +147,6 @@ public class CollisionChecker {
 						if(entity.solidArea.intersects(target[i].solidArea)) {
 							entity.collisionOn = true;
 							index = i;
-							//System.out.println(index);
 						}
 						break;
 					case "down":
@@ -173,11 +172,8 @@ public class CollisionChecker {
 				}
 				entity.solidArea.x = entity.solidAreaDefaultX;
 				entity.solidArea.y = entity.solidAreaDefaultY;
-//				target[i].solidArea.x = target[i].solidAreaDefaultX;
-//				target[i].solidArea.y = target[i].solidAreaDefaultY;
 			}
 		}
-		//System.out.println(index);
 		return index;
 	}
 }

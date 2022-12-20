@@ -13,7 +13,6 @@ public class It_Tree1 extends InteractiveTile{
 	public It_Tree1(GamePanel gp, int col, int row) {
 		super(gp, col, row);
 		this.gp = gp;
-		//System.out.println("Tree terbentuk");
 		
 		this.worldX = gp.TILESIZE*col;
 		this.worldY = gp.TILESIZE*row;

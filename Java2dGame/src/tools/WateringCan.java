@@ -34,7 +34,6 @@ public class WateringCan {
 			int tileX = ((player.worldX + (gp.TILESIZE/2)) / gp.TILESIZE);
 			int tileY = (player.worldY + gp.TILESIZE + gp.TILESIZE) / gp.TILESIZE;
 			
-			System.out.println(areaPlayerX + " " + areaPlayerY + " " + mouseH.mouseX + " " + mouseH.mouseY);
 			
 			if(player.direction=="up" && (mouseH.mouseX >= areaPlayerX && mouseH.mouseX <= areaPlayerX+gp.TILESIZE) &&
 			  (mouseH.mouseY >= areaPlayerY-gp.TILESIZE && mouseH.mouseY <= areaPlayerY)) {

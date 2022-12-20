@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import entity.Player;
 import farm.Crop;
 import farm.Farm;
-import gameState.GameStateManager;
 import input.KeyHandler;
 import input.MouseHandler;
 import objects.SuperObject;
@@ -19,6 +18,7 @@ import subWindows.Start;
 import subWindows.ToolBar;
 import tileInteractive.InteractiveTile;
 import tiles.TileManager;
+import tools.Axe;
 import tools.BagOfSeed1;
 import tools.Hoe;
 import tools.Tools;
@@ -49,7 +49,6 @@ public class GamePanel extends JPanel implements Runnable{
 	MouseHandler mouseH = new MouseHandler(this);
 	KeyHandler keyH = new KeyHandler(this);
 	Thread gameThread;
-	GameStateManager gameStateManager = new GameStateManager();
 
 	
 	//COLLISION
@@ -71,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//Tools
 	public Hoe hoe = new Hoe(this, keyH, mouseH, player, aSetter);
 	public WateringCan wateringCan = new WateringCan(this, keyH, mouseH, player, aSetter);
+	public Axe axe = new Axe(this, keyH, mouseH, player, aSetter);
 	public Tools tool = new Tools(this, mouseH, player);
 	public BagOfSeed1 bagOfSeed1 = new BagOfSeed1(this, keyH, mouseH, player, farm);
 	public Watch watch = new Watch(this, keyH, mouseH, player, aSetter);

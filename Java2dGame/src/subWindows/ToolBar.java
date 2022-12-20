@@ -89,6 +89,7 @@ public void draw(Graphics2D g2) {
 		case 3:
 			currentItemX=(gp.TILESIZE*3)+2*(16*4)+4*3;
 			currentItemY=(gp.TILESIZE*12)+4;
+			gp.axe.update();
 			break;
 		case 4:
 			currentItemX=(gp.TILESIZE*3)+3*(16*4)+4*4;

@@ -84,7 +84,7 @@ public class Player extends Entity {
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
 			gp.cChecker.checkEntity(this, gp.iTile);
-			interactTile();
+			
 			
 			if(collisionOn == false && keyH.jPressed == false) {
 				switch (direction) {
@@ -114,9 +114,7 @@ public class Player extends Entity {
 	}
 	
 	public void interactTile() {
-		if(keyH.jPressed == true) {
 			attack = true;
-		}
 	}
 	
 	public void attacking() {

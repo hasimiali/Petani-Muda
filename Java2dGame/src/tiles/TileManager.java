@@ -344,10 +344,8 @@ public class TileManager {
 					int num = Integer.parseInt(numbers[col]);
 					
 					mapTileNum[col][row] = num;
-					//System.out.println(mapTileNum[col][row] + ' ');
 					col++;
 				}
-				//System.out.println("\n");
 				if(col == gp.maxWorldCol) {
 					col = 0;
 					row++;

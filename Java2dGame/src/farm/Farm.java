@@ -16,15 +16,12 @@ public class Farm {
 	public void draw(Crop object, int tileX, int tileY) {
 		String Name = new String();
 		for(SuperObject i : gp.objects) {
-			//System.out.println("posisi : "+i.name + "x = "+ i.worldY/48 + " y = " + i.worldY/48);
 			if(i.worldX/48 == tileX && i.worldY/48 == tileY) {
 				Name = i.name; 
 			}
 		}
 		for(Crop i : gp.crops) {
-			//System.out.println("posisi : "+i.name + "x = "+ i.worldY/48 + " y = " + i.worldY/48);
 			if(i.worldX/48 == tileX && i.worldY/48 == tileY) {
-				System.out.println(i.name);
 				Name = i.name;
 			}
 		}

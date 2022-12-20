@@ -44,12 +44,10 @@ public class Start {
 			if(keyH.leftPressed==true && currentMenu>1) {
 				currentMenu-=1;
 				inputState=1;
-				System.out.println(currentMenu);
 			}
 			if(keyH.rightPressed==true && currentMenu<3) {
 				currentMenu+=1;
 				inputState=1;
-				System.out.println(currentMenu);
 			}
 		}
 		else if(inputState==1) {
